@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Mailforce API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -19,7 +19,7 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Mailforce API! You can use our API to access Mailforce API endpoints.
 
 We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -55,9 +55,9 @@ let api = kittn.authorize('meowmeowmeow');
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Mailforce uses API keys to allow access to the API. You can register a new Mailforce API key at our [developer portal](http://localhost:3000/developers).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Mailforce expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: meowmeowmeow`
 
@@ -65,9 +65,9 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Plans
 
-## Get All Kittens
+## Show all plans
 
 ```ruby
 require 'kittn'
@@ -133,7 +133,7 @@ available | true | If set to false, the result will include kittens that have al
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## Get a Specific Kitten
+## Show specific plan
 
 ```ruby
 require 'kittn'
@@ -187,53 +187,120 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to retrieve
 
-## Delete a Specific Kitten
+# Authentication
 
-```ruby
-require 'kittn'
+This is done via the front-end but the gmail authorization is then passed to the back-end
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+# Users
 
-```python
-import kittn
+## Show Profile
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+Show information about the loggeg in user
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
+# Accounts
 
-```javascript
-const kittn = require('kittn');
+## Add Account
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+Handle The gmail response from the front-end process in order to create an account in the backend
 
-> The above command returns JSON structured like this:
+## Delete Account
 
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
+Remove an email account from the account
 
-This endpoint deletes a specific kitten.
+# Emails
 
-### HTTP Request
+## List all Drafts
 
-`DELETE http://example.com/kittens/<ID>`
+Shows draft (that have the label mailforce) from the email account
 
-### URL Parameters
+## Show a Specific Draft
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+Show a specific draft  (that has  the label mailforce) from the email account
 
+## Show Specific Email
+
+Assistant can view a specific email from an account based on access scope
+
+## Show Account Emails
+
+Assistant can view a list of all email from an account based on access scope
+
+## Send Draft
+
+Send a specific email from the accocunt. An assistant can send an email if they have the right authorization
+
+## Show Thread
+
+Show an entire email thread from an account
+
+## Show Thread Item
+
+Show specific email from a thread
+
+## Reply to Email
+
+# Assistant
+
+## Add Assistant
+
+Add an assistant to an account
+
+## Remove Assistant
+
+Remove assistant from an account
+
+## Update Assistant Settings
+
+- Update the access right of an assistant in an account: read only access, write only access, read & write access
+- or Change Access Scope (everyone, only, custom)
+- or review_required (boolean)
+
+
+# Pending Review
+
+Manage emails that need reviews
+
+## List draft that need review
+
+Show all the drafts that nee dreview
+
+## Show specific draft that need review
+
+Show specific draft
+
+## Approve Draft 
+
+Once a draft is approved it is sent
+
+## Reject a draft
+
+When a draft is rejected it is not sent and its status is updated to revied.
+
+
+# Subscription
+
+## Subscribe to a plan
+
+Create a new subscription for a user
+
+## Cancel Subscription
+
+Cancel a user subscription
+
+## Add Credit Card
+
+Add a new credit card to the email account
+
+## Remove Credit Card
+
+Remove credit card from the email account
+
+## Update Default Credit Card
+
+Change the curren card a user has associated to his account
+
+# Payments
+
+## Make a Payment
+
+Process a payment request
